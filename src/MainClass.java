@@ -12,59 +12,26 @@ public class MainClass extends JFrame implements ActionListener
     int y;
     boolean flag[][];
     int[][] value;
-//    Open t;
     boolean[][] open;
-//    Thread t1;
     JLabel[][] lb;
     JButton bt_new;
     JLabel lb_flag;
-//    OpenBox obj;
-//    Thread openBox;
     boolean gameOver;
     Icon icn_flag;
     Icon icn_mine;
     Icon icn_minex;
-//    public void paint(Graphics g)
-//    {
-//        try 
-//        {
-//                x=85;
-//                y=100;
-//                for (int j = 0; j < 15; j++) 
-//                {
-//                    g.drawLine(x,y,x+(15*20),y);
-//                    y=y+20;
-//                }
-//                x=85;
-//                y=100;
-//                for (int j = 0; j < 15; j++) 
-//                {
-//                    g.drawLine(x,y,x,y+(15*20));
-//                    x=x+20;
-//                }
-//        }
-//        catch (Exception e) 
-//        {
-//            e.printStackTrace();
-//        }
-//        
-//    }
     MainClass()
     {
         
         this.setTitle("minesweeper implemented by Amandeep Singh(AmIe)");
         panel=new JPanel();
         panel.setLayout(null);
-//        t=new Open();
         open=new boolean[15][15];
         flag=new boolean[15][15];
-//        t1=new Thread(t);
-//        t1.start();
         y=100;
         setLayout(null);
         gameOver=false;
         this.setSize(500,500);
-        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocation(200, 100);
         bt=new JButton[15][15];
@@ -131,9 +98,6 @@ public class MainClass extends JFrame implements ActionListener
                 System.out.print(" ");
             }
             System.out.println("");
-//            obj=new OpenBox();
-//            openBox=new Thread(obj);
-//            openBox.start();
         }
         icn_flag=new ImageIcon("F:\\flag.jpg");
         icn_mine=new ImageIcon("F:\\mine.jpg");
@@ -180,7 +144,6 @@ public class MainClass extends JFrame implements ActionListener
                         {
                             open[i][j]=true;
                             setLabel(i,j);
-//                            open(i,j);
                             emptyBoxClicked(i,j);
                             status();
                         }
@@ -204,7 +167,6 @@ public class MainClass extends JFrame implements ActionListener
                         else
                         {
                             flag[i][j]=false;
-//                            bt[i][j].setBackground(Color.DARK_GRAY);
                             bt[i][j].setIcon(null);
                         }
                         
@@ -215,34 +177,6 @@ public class MainClass extends JFrame implements ActionListener
             
             
     }
-//    class Open implements Runnable
-//    {
-//        String s="";
-//        public void run() 
-//        {
-//            while(true)
-//            {
-//                for (int i = 0; i < 15; i++) 
-//                {
-//                    for (int j = 0; j < 15; j++) 
-//                    {
-//                        if(bt[i][j].getLabel()!=null)
-//                        {
-//                            s=bt[i][j].getLabel();
-//                        int n=Integer.parseInt(s);
-//                        if(n==0)
-//                        {
-//                            open(i,j);
-//                            i=i-2;
-//                            j=j-2;
-//                        }
-//                        }
-//                        
-//                    }
-//                }
-//            }
-//        }
-//}
         void setLabel(int i,int j)
         {
                             if(value[i][j]==1)
@@ -270,33 +204,6 @@ public class MainClass extends JFrame implements ActionListener
                             }
                             
         }
-//        void open(int c,int d)
-//        {
-//            for (int k = c-1;k<=c+1; k++) 
-//                        {
-//                            if(k>=0 && k<=14)
-//                            {
-//                                for (int l = d-1; l <=d+1; l++) 
-//                                {
-//                                    if(l>=0 && l<=14)
-//                                    {
-//                                        if(open[k][l]==0)
-//                                        {
-//                                            bt[k][l].setVisible(false);
-//                                            lb[k][l].setVisible(true);
-//                                            open=t.show(k,l);
-//                                            setLabel(k,l);
-//                                            status();
-//                                            if(flag==false)
-//                                            {
-//                                                bt_new.setText("you win :-)");
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//        }
         void status()
         {
             outer: for (int k= 0; k < 15; k++) 
@@ -330,25 +237,6 @@ public class MainClass extends JFrame implements ActionListener
                     }
         }
     
-//    class OpenBox implements Runnable
-//    {
-//        public void run() 
-//        {
-//            while(true)
-//            {
-//                for (int i = 0; i <15; i++) 
-//                {
-//                    for (int j = 0; j <15; j++) 
-//                    {
-//                        if(value[i][j]==0 && open[i][j]==1)
-//                        {
-//                            open(i,j);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
     void mineClicked()
     {
                             for (int k= 0; k < 15; k++) 
@@ -370,7 +258,7 @@ public class MainClass extends JFrame implements ActionListener
                                 }
                             }
     }
-    void emptyBoxClicked(int k,int l)
+    void emptyBoxClicked(int k,int l)//using for loop it gives stack overflow exception.
     {
         if(k-1>=0)
         {
